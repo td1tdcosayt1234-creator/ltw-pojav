@@ -34,38 +34,15 @@ jobs:
         run: |
           echo "libltw.so is built from source via ndk-build (jni/ltw/Android.mk, ltw-lite Create fixes)."
 
-      - name: Get JRE 8
-        uses: dawidd6/action-download-artifact@v9
-        continue-on-error: true
-        with:
-          workflow: build.yml
-          path: app_pojavlauncher/src/main/assets/components/jre
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
-          branch: buildjre8
-          name: jre8-pojav
-
-      - name: Get JRE17
-        uses: dawidd6/action-download-artifact@v9
-        continue-on-error: true
-        with:
-          workflow: build.yml
-          path: app_pojavlauncher/src/main/assets/components/jre-new
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
-          branch: buildjre17-21
-          name: jre17-pojav
-
-      - name: Get JRE21
-        uses: dawidd6/action-download-artifact@v9
-        continue-on-error: true
-        with:
-          workflow: build.yml
-          path: app_pojavlauncher/src/main/assets/components/jre-21
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
-          branch: buildjre17-21
-          name: jre21-pojav
+      - name: Get JRE (extract bundled binpacks from official PojavLauncher release APK)
+        run: |
+          apt-get update && apt-get install -y wget unzip
+          wget -q "https://github.com/PojavLauncherTeam/PojavLauncher/releases/download/gladiolus/PojavLauncher.apk" -O /tmp/pojav.apk
+          mkdir -p /tmp/pojavassets
+          unzip -o -q /tmp/pojav.apk "assets/components/jre" "assets/components/jre-new" "assets/components/jre-21" -d /tmp/pojavassets
+          mkdir -p app_pojavlauncher/src/main/assets/components
+          cp -r /tmp/pojavassets/assets/components/. app_pojavlauncher/src/main/assets/components/
+          echo "JRE assets:"; ls -la app_pojavlauncher/src/main/assets/components/
 
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -149,9 +126,9 @@ jobs:
             (jni/ltw, our GLSL->GLSL ES 3.00 translation, stencil FBO merge,
             texture/format/wrap adaptation, QUADS/POLYGON expansion).
             Default renderer: opengles3_ltw.
-            NOTE: built WITHOUT a bundled JRE (the upstream JRE artifact had expired), so the
-            launcher will download the JRE on first run. This build uses the PRE-crash-fix
-            renderer; a corrected build will follow once crash logs are available.
+            The JRE (8/17/21) is bundled from the official PojavLauncher release, so the
+            launcher runs without downloading a runtime. This build uses the PRE-crash-fix
+            renderer; a corrected build follows once crash logs are available.
           files: |
             out/app-debug.apk
             out/app-debug-noruntime.apk
