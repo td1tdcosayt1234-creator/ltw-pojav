@@ -39,7 +39,7 @@ jobs:
           apt-get update && apt-get install -y wget unzip
           wget -q "https://github.com/PojavLauncherTeam/PojavLauncher/releases/download/gladiolus/PojavLauncher.apk" -O /tmp/pojav.apk
           mkdir -p /tmp/pojavassets
-          unzip -o -q /tmp/pojav.apk "assets/components/jre" "assets/components/jre-new" "assets/components/jre-21" -d /tmp/pojavassets
+          unzip -o -q /tmp/pojav.apk "assets/components/jre/*" "assets/components/jre-new/*" "assets/components/jre-21/*" -d /tmp/pojavassets
           mkdir -p app_pojavlauncher/src/main/assets/components
           cp -r /tmp/pojavassets/assets/components/. app_pojavlauncher/src/main/assets/components/
           echo "JRE assets:"; ls -la app_pojavlauncher/src/main/assets/components/
