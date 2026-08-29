@@ -34,6 +34,7 @@ jobs:
 
       - name: Get JRE 8
         uses: dawidd6/action-download-artifact@v9
+        continue-on-error: true
         with:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre
@@ -44,6 +45,7 @@ jobs:
 
       - name: Get JRE17
         uses: dawidd6/action-download-artifact@v9
+        continue-on-error: true
         with:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre-new
@@ -54,6 +56,7 @@ jobs:
 
       - name: Get JRE21
         uses: dawidd6/action-download-artifact@v9
+        continue-on-error: true
         with:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre-21
@@ -132,4 +135,24 @@ jobs:
         with:
           name: app-debug-noruntime
           path: out/app-debug-noruntime.*
+
+      - name: Create GitHub Release
+        if: success()
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ltw-launcher-${{ github.run_number }}
+          name: ltw-lite Launcher (libltw.so + Create fixes) - run ${{ github.run_number }}
+          body: |
+            PojavLauncher build with the ltw-lite renderer (libltw.so) built from source
+            (jni/ltw, our GLSL->GLSL ES 3.00 translation, stencil FBO merge,
+            texture/format/wrap adaptation, QUADS/POLYGON expansion).
+            Default renderer: opengles3_ltw.
+            NOTE: built WITHOUT a bundled JRE (the upstream JRE artifact had expired), so the
+            launcher will download the JRE on first run. This build uses the PRE-crash-fix
+            renderer; a corrected build will follow once crash logs are available.
+          files: |
+            out/app-debug.apk
+            out/app-debug-noruntime.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
