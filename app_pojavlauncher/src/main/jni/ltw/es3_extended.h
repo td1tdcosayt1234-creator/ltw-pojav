@@ -1,0 +1,14 @@
+/**
+ * Created by: artDev
+ * Copyright (c) 2025 artDev, SerpentSpirale, PojavLauncherTeam, Digital Genesis LLC.
+ * For use under LGPL-3.0
+ */
+
+// Added manually as needed
+GLESFUNC(glDrawElementsIndirect,PFNGLDRAWELEMENTSINDIRECTPROC)
+GLESFUNC(glMultiDrawArraysEXT,PFNGLMULTIDRAWARRAYSEXTPROC)
+GLESFUNC(glMultiDrawElementsEXT,PFNGLMULTIDRAWELEMENTSEXTPROC)
+GLESFUNC(glGetTexLevelParameteriv,PFNGLGETTEXLEVELPARAMETERIVPROC)
+GLESFUNC(glGetTexLevelParameterfv,PFNGLGETTEXLEVELPARAMETERFVPROC)
+GLESFUNC(glDrawElementsBaseVertex, PFNGLDRAWELEMENTSBASEVERTEXPROC)
+GLESFUNC(glBufferStorageEXT, PFNGLBUFFERSTORAGEEXTPROC)

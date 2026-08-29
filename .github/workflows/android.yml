@@ -28,11 +28,9 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Get LTW
+      - name: LTW renderer
         run: |
-          apt update && apt install wget
-          cd app_pojavlauncher/libs
-          wget https://github.com/PojavLauncherTeam/LTW/releases/latest/download/ltw-release.aar
+          echo "libltw.so is built from source via ndk-build (jni/ltw/Android.mk, ltw-lite Create fixes)."
 
       - name: Get JRE 8
         uses: dawidd6/action-download-artifact@v9

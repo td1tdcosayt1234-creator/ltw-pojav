@@ -86,6 +86,10 @@ LOCAL_SHARED_LIBRARIES := awt_headless
 LOCAL_SRC_FILES := xawt_fake.c
 include $(BUILD_SHARED_LIBRARY)
 
+# ltw-lite: build the LTW renderer (libltw.so) with Create-mod crash fixes.
+# Selected via the "opengles3_ltw" renderer option (POJAVEXEC_EGL=libltw.so).
+include $(HERE_PATH)/ltw/Android.mk
+
 # delete fake libs after linked
 $(info $(shell (rm $(HERE_PATH)/../jniLibs/*/libawt_headless.so)))
 
