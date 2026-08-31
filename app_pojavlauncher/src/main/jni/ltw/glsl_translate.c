@@ -208,11 +208,10 @@ char *glsl_translate(const char *src, glsl_stage stage) {
 
     snprintf(out + pos, outsize - pos, "#version 300 es\n");
     pos += strlen(out + pos);
+    snprintf(out + pos, outsize - pos, "precision highp float;\n"); pos += strlen(out + pos);
+    snprintf(out + pos, outsize - pos, "precision highp int;\n");   pos += strlen(out + pos);
     if (stage == STAGE_FRAGMENT) {
-        snprintf(out + pos, outsize - pos, "precision highp float;\n"); pos += strlen(out + pos);
-        snprintf(out + pos, outsize - pos, "precision highp int;\n");   pos += strlen(out + pos);
-    } else {
-        snprintf(out + pos, outsize - pos, "precision highp float;\n"); pos += strlen(out + pos);
+        snprintf(out + pos, outsize - pos, "precision highp sampler2D;\n"); pos += strlen(out + pos);
     }
 
     int clip_n = 0;

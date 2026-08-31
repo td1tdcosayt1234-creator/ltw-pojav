@@ -179,7 +179,7 @@ void glShaderSource(GLuint shader, GLsizei count, const GLchar *const*string, co
      * emulates GL_EXT_clip_cull_distance. */
     char *translated_source = ltw_translate_shader(target_string, shader_info->shader_type);
     GLchar* new_source = (GLchar*)translated_source;
-    //printf("\n\n\nShader Result\n%s\n\n\n", new_source);
+    printf("\n\n\nShader Type=%u Source\n%s\n\n\n", shader_info->shader_type, new_source);
     if(shader_info->source != NULL) free((void*)shader_info->source);
     shader_info->source = new_source;
     es3_functions.glShaderSource(shader, 1, &shader_info->source, 0);
