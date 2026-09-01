@@ -3,6 +3,7 @@
     <!-- App name part -->
     <string name="app_name">PojavLauncher (Minecraft: Java Edition for Android)</string>
     <string name="app_short_name">PojavLauncher</string>
+    <string name="ltw_tagline">Minecraft: Java Edition for Android</string>
 
     <!-- Action bar part -->
 

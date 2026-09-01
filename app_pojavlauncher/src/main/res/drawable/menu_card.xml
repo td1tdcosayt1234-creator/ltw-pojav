@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rounded menu-card used by LauncherMenuButton: modern look with a
+     subtle press state that is visible on the dark launcher background. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_menu_card_pressed" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_menu_card_pressed" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_menu_card" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+</selector>

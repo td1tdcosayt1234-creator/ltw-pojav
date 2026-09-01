@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!-- Replaced the old 9-patch-focused look with the modern gradient used app-wide. -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Modern gradient play button with rounded corners and a distinct pressed state. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">

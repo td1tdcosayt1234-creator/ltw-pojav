@@ -10,6 +10,23 @@
     android:orientation="vertical"
     android:background="@color/background_app">
 
+    <!-- Compact brand banner for landscape -->
+    <TextView
+        android:id="@+id/header_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/minecraft_ten"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.05"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_2sdp"
+        android:text="@string/app_short_name"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -17,7 +34,7 @@
         app:layout_constraintBottom_toTopOf="@id/_background_display_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/header_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -58,46 +75,53 @@
             <com.kdt.mcgui.LauncherMenuButton
                 android:id="@+id/custom_control_button"
                 style="@style/LauncherMenuButton.Universal"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/padding_medium"
                 android:drawableStart="@drawable/ic_menu_custom_controls"
                 android:text="@string/mcl_option_customcontrol"
-                app:layout_constraintTop_toBottomOf="@id/news_button"/>
+                app:layout_constraintTop_toBottomOf="@id/news_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/center_guideline"/>
 
             <com.kdt.mcgui.LauncherMenuButton
                 android:id="@+id/install_jar_button"
                 style="@style/LauncherMenuButton.Universal"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/padding_medium"
                 android:drawableStart="@drawable/ic_menu_install_jar"
                 android:text="@string/main_install_jar_file"
-                app:layout_constraintTop_toBottomOf="@id/custom_control_button"
-                tools:layout_editor_absoluteX="0dp" />
+                app:layout_constraintTop_toBottomOf="@id/discord_button"
+                app:layout_constraintStart_toStartOf="@id/center_guideline"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <com.kdt.mcgui.LauncherMenuButton
                 android:id="@+id/share_logs_button"
                 style="@style/LauncherMenuButton.Universal"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/padding_medium"
                 android:drawableStart="@android:drawable/ic_menu_share"
                 android:text="@string/main_share_logs"
-                app:layout_constraintTop_toBottomOf="@id/install_jar_button" />
+                app:layout_constraintTop_toBottomOf="@id/custom_control_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/center_guideline" />
 
             <com.kdt.mcgui.LauncherMenuButton
                 android:id="@+id/open_files_button"
                 style="@style/LauncherMenuButton.Universal"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/padding_medium"
                 android:drawableStart="@drawable/ic_folder"
                 android:text="@string/mcl_button_open_directory"
-
-                app:layout_constraintTop_toBottomOf="@id/share_logs_button" />
+                app:layout_constraintTop_toBottomOf="@id/install_jar_button"
+                app:layout_constraintStart_toStartOf="@id/center_guideline"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
-
 
     <com.kdt.mcgui.mcVersionSpinner
         android:id="@+id/mc_version_spinner"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_32sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
 
@@ -114,7 +138,7 @@
 
     <ImageButton
         android:id="@+id/edit_profile_button"
-        android:layout_width="@dimen/_32sdp"
+        android:layout_width="@dimen/_40sdp"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/_8sdp"
 
@@ -130,19 +154,20 @@
         android:id="@+id/_background_display_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="-8dp"
         android:background="@color/background_bottom_bar"
 
         android:translationZ="-1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/mc_version_spinner" />
 
     <com.kdt.mcgui.MineButton
         android:id="@+id/play_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="0dp"
 
 
         android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="8dp"
         android:text="@string/main_play"
         android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="@+id/mc_version_spinner"
@@ -150,4 +175,3 @@
         app:layout_constraintTop_toTopOf="@+id/mc_version_spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
